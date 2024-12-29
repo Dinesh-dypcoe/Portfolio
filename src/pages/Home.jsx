@@ -353,6 +353,60 @@ const Home = () => {
             >
               About Me
             </Typography>
+            <Typography
+              component={motion.p}
+              variants={fadeInUp}
+              sx={{
+                color: 'text.secondary',
+                lineHeight: 1.7,
+                fontSize: '1.1rem',
+                textAlign: 'center',
+                maxWidth: '800px',
+                margin: '0 auto',
+                mb: 4,
+              }}
+            >
+              I am a passionate Full Stack Developer with expertise in the MERN stack. 
+              With a strong foundation in both frontend and backend development, 
+              I create efficient, scalable, and user-friendly solutions. 
+              I enjoy solving complex problems and am constantly learning new technologies 
+              to stay at the forefront of web development.
+            </Typography>
+          </motion.div>
+        </Container>
+      </Box>
+
+      {/* Achievements Section */}
+      <Box 
+        id="achievements"
+        sx={{ 
+          py: { xs: 8, md: 15 },
+          scrollMarginTop: '100px',
+        }}
+      >
+        <Container maxWidth="lg">
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <Typography
+              component={motion.h2}
+              variants={fadeInUp}
+              variant="h2"
+              sx={{
+                fontSize: { xs: '1.8rem', sm: '2rem', md: '2.5rem' },
+                fontWeight: 'bold',
+                textAlign: 'center',
+                mb: 6,
+                background: 'linear-gradient(45deg, #00D1FF 30%, #7000FF 90%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
+              Achievements
+            </Typography>
             {/* Achievements Section */}
             <Box
               component={motion.div}
@@ -1463,6 +1517,22 @@ const Home = () => {
               </Typography>
               {/* Full Stack Projects Container */}
               <Box
+                sx={{
+                  display: { xs: 'flex', md: 'none' },
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 1,
+                  mb: 2,
+                  color: 'text.secondary',
+                }}
+              >
+                <ChevronLeft sx={{ animation: 'swipeHint 2s infinite' }} />
+                <Typography variant="caption">
+                  Swipe to see more projects
+                </Typography>
+                <ChevronRight sx={{ animation: 'swipeHint 2s infinite' }} />
+              </Box>
+              <Box
                 id="fullstack-container"
                 sx={{
                   display: 'flex',
@@ -1482,36 +1552,12 @@ const Home = () => {
                   msOverflowStyle: 'none',
                   scrollSnapType: 'x mandatory',
                   position: 'relative',
+                  '@keyframes swipeHint': {
+                    '0%, 100%': { opacity: 0.3 },
+                    '50%': { opacity: 1 },
+                  },
                 }}
               >
-                {/* Left Scroll Button for Full Stack */}
-                <Box
-                  sx={{
-                    display: { xs: 'block', md: 'none' },
-                    position: 'absolute',
-                    left: 0,
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    zIndex: 2,
-                  }}
-                >
-                  <IconButton
-                    onClick={() => {
-                      const container = document.getElementById('fullstack-container');
-                      container.scrollBy({ left: -container.offsetWidth, behavior: 'smooth' });
-                    }}
-                    sx={{
-                      background: 'rgba(0, 0, 0, 0.7)',
-                      color: 'white',
-                      '&:hover': {
-                        background: 'rgba(0, 0, 0, 0.9)',
-                      },
-                    }}
-                  >
-                    <ChevronLeft />
-                  </IconButton>
-                </Box>
-
                 {/* Full Stack Project Cards */}
                 {[
                   {
@@ -1641,34 +1687,6 @@ const Home = () => {
                     </Box>
                   </Card>
                 ))}
-
-                {/* Right Scroll Button for Full Stack */}
-                <Box
-                  sx={{
-                    display: { xs: 'block', md: 'none' },
-                    position: 'absolute',
-                    right: 0,
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    zIndex: 2,
-                  }}
-                >
-                  <IconButton
-                    onClick={() => {
-                      const container = document.getElementById('fullstack-container');
-                      container.scrollBy({ left: container.offsetWidth, behavior: 'smooth' });
-                    }}
-                    sx={{
-                      background: 'rgba(0, 0, 0, 0.7)',
-                      color: 'white',
-                      '&:hover': {
-                        background: 'rgba(0, 0, 0, 0.9)',
-                      },
-                    }}
-                  >
-                    <ChevronRight />
-                  </IconButton>
-                </Box>
               </Box>
             </Box>
 
@@ -1687,6 +1705,22 @@ const Home = () => {
                 Frontend Projects
               </Typography>
               {/* Frontend Projects Container */}
+              <Box
+                sx={{
+                  display: { xs: 'flex', md: 'none' },
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 1,
+                  mb: 2,
+                  color: 'text.secondary',
+                }}
+              >
+                <ChevronLeft sx={{ animation: 'swipeHint 2s infinite' }} />
+                <Typography variant="caption">
+                  Swipe to see more projects
+                </Typography>
+                <ChevronRight sx={{ animation: 'swipeHint 2s infinite' }} />
+              </Box>
               <Box
                 id="frontend-container"
                 sx={{
@@ -1707,36 +1741,12 @@ const Home = () => {
                   msOverflowStyle: 'none',
                   scrollSnapType: 'x mandatory',
                   position: 'relative',
+                  '@keyframes swipeHint': {
+                    '0%, 100%': { opacity: 0.3 },
+                    '50%': { opacity: 1 },
+                  },
                 }}
               >
-                {/* Left Scroll Button for Frontend */}
-                <Box
-                  sx={{
-                    display: { xs: 'block', md: 'none' },
-                    position: 'absolute',
-                    left: 0,
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    zIndex: 2,
-                  }}
-                >
-                  <IconButton
-                    onClick={() => {
-                      const container = document.getElementById('frontend-container');
-                      container.scrollBy({ left: -container.offsetWidth, behavior: 'smooth' });
-                    }}
-                    sx={{
-                      background: 'rgba(0, 0, 0, 0.7)',
-                      color: 'white',
-                      '&:hover': {
-                        background: 'rgba(0, 0, 0, 0.9)',
-                      },
-                    }}
-                  >
-                    <ChevronLeft />
-                  </IconButton>
-                </Box>
-
                 {/* Frontend Project Cards */}
                 {[
                   {
@@ -1873,34 +1883,6 @@ const Home = () => {
                     </Box>
                   </Card>
                 ))}
-
-                {/* Right Scroll Button for Frontend */}
-                <Box
-                  sx={{
-                    display: { xs: 'block', md: 'none' },
-                    position: 'absolute',
-                    right: 0,
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    zIndex: 2,
-                  }}
-                >
-                  <IconButton
-                    onClick={() => {
-                      const container = document.getElementById('frontend-container');
-                      container.scrollBy({ left: container.offsetWidth, behavior: 'smooth' });
-                    }}
-                    sx={{
-                      background: 'rgba(0, 0, 0, 0.7)',
-                      color: 'white',
-                      '&:hover': {
-                        background: 'rgba(0, 0, 0, 0.9)',
-                      },
-                    }}
-                  >
-                    <ChevronRight />
-                  </IconButton>
-                </Box>
               </Box>
             </Box>
           </motion.div>
