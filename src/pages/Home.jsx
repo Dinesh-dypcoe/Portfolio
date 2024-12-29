@@ -1461,31 +1461,58 @@ const Home = () => {
               >
                 Full Stack Projects
               </Typography>
+              {/* Full Stack Projects Container */}
               <Box
+                id="fullstack-container"
                 sx={{
-                  display: 'grid',
-                  gridTemplateColumns: { 
-                    xs: '1fr',
-                    sm: 'repeat(2, 1fr)',
-                    md: 'repeat(3, 1fr)'
+                  display: 'flex',
+                  flexDirection: { xs: 'row', md: 'row' },
+                  flexWrap: { xs: 'nowrap', md: 'wrap' },
+                  gap: 3,
+                  overflowX: { xs: 'auto', md: 'visible' },
+                  overflowY: 'hidden',
+                  pb: { xs: 2, md: 0 },
+                  mx: { xs: -2, md: 0 },
+                  px: { xs: 2, md: 0 },
+                  justifyContent: { md: 'center' },
+                  '&::-webkit-scrollbar': {
+                    display: 'none'
                   },
-                  gap: { xs: 3, md: 4 },
-                  justifyItems: 'center',
-                  '& > *': {
-                    maxWidth: '400px',
-                    width: '100%'
-                  },
-                  '@media (min-width: 600px)': {
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                    '& > *': {
-                      justifySelf: 'center'
-                    }
-                  },
-                  '@media (min-width: 900px)': {
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                  }
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none',
+                  scrollSnapType: 'x mandatory',
+                  position: 'relative',
                 }}
               >
+                {/* Left Scroll Button for Full Stack */}
+                <Box
+                  sx={{
+                    display: { xs: 'block', md: 'none' },
+                    position: 'absolute',
+                    left: 0,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    zIndex: 2,
+                  }}
+                >
+                  <IconButton
+                    onClick={() => {
+                      const container = document.getElementById('fullstack-container');
+                      container.scrollBy({ left: -container.offsetWidth, behavior: 'smooth' });
+                    }}
+                    sx={{
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      color: 'white',
+                      '&:hover': {
+                        background: 'rgba(0, 0, 0, 0.9)',
+                      },
+                    }}
+                  >
+                    <ChevronLeft />
+                  </IconButton>
+                </Box>
+
+                {/* Full Stack Project Cards */}
                 {[
                   {
                     title: "FindYourStay",
@@ -1510,12 +1537,14 @@ const Home = () => {
                     component={motion.div}
                     variants={fadeInUp}
                     sx={{
+                      flex: { xs: '0 0 100%', sm: '0 0 45%', md: '0 0 30%' },
+                      maxWidth: { md: '380px' },
+                      scrollSnapAlign: 'start',
                       background: 'rgba(255, 255, 255, 0.05)',
                       backdropFilter: 'blur(10px)',
                       borderRadius: '20px',
                       overflow: 'hidden',
                       border: '1px solid rgba(255, 255, 255, 0.1)',
-                      height: '100%',
                       display: 'flex',
                       flexDirection: 'column',
                       '&:hover': {
@@ -1612,6 +1641,34 @@ const Home = () => {
                     </Box>
                   </Card>
                 ))}
+
+                {/* Right Scroll Button for Full Stack */}
+                <Box
+                  sx={{
+                    display: { xs: 'block', md: 'none' },
+                    position: 'absolute',
+                    right: 0,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    zIndex: 2,
+                  }}
+                >
+                  <IconButton
+                    onClick={() => {
+                      const container = document.getElementById('fullstack-container');
+                      container.scrollBy({ left: container.offsetWidth, behavior: 'smooth' });
+                    }}
+                    sx={{
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      color: 'white',
+                      '&:hover': {
+                        background: 'rgba(0, 0, 0, 0.9)',
+                      },
+                    }}
+                  >
+                    <ChevronRight />
+                  </IconButton>
+                </Box>
               </Box>
             </Box>
 
@@ -1629,31 +1686,58 @@ const Home = () => {
               >
                 Frontend Projects
               </Typography>
+              {/* Frontend Projects Container */}
               <Box
+                id="frontend-container"
                 sx={{
-                  display: 'grid',
-                  gridTemplateColumns: { 
-                    xs: '1fr',
-                    sm: 'repeat(2, 1fr)',
-                    md: 'repeat(3, 1fr)'
+                  display: 'flex',
+                  flexDirection: { xs: 'row', md: 'row' },
+                  flexWrap: { xs: 'nowrap', md: 'wrap' },
+                  gap: 3,
+                  overflowX: { xs: 'auto', md: 'visible' },
+                  overflowY: 'hidden',
+                  pb: { xs: 2, md: 0 },
+                  mx: { xs: -2, md: 0 },
+                  px: { xs: 2, md: 0 },
+                  justifyContent: { md: 'center' },
+                  '&::-webkit-scrollbar': {
+                    display: 'none'
                   },
-                  gap: { xs: 3, md: 4 },
-                  justifyItems: 'center',
-                  '& > *': {
-                    maxWidth: '400px',
-                    width: '100%'
-                  },
-                  '@media (min-width: 600px)': {
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                    '& > *': {
-                      justifySelf: 'center'
-                    }
-                  },
-                  '@media (min-width: 900px)': {
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                  }
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none',
+                  scrollSnapType: 'x mandatory',
+                  position: 'relative',
                 }}
               >
+                {/* Left Scroll Button for Frontend */}
+                <Box
+                  sx={{
+                    display: { xs: 'block', md: 'none' },
+                    position: 'absolute',
+                    left: 0,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    zIndex: 2,
+                  }}
+                >
+                  <IconButton
+                    onClick={() => {
+                      const container = document.getElementById('frontend-container');
+                      container.scrollBy({ left: -container.offsetWidth, behavior: 'smooth' });
+                    }}
+                    sx={{
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      color: 'white',
+                      '&:hover': {
+                        background: 'rgba(0, 0, 0, 0.9)',
+                      },
+                    }}
+                  >
+                    <ChevronLeft />
+                  </IconButton>
+                </Box>
+
+                {/* Frontend Project Cards */}
                 {[
                   {
                     title: "Snake Game",
@@ -1685,12 +1769,14 @@ const Home = () => {
                     component={motion.div}
                     variants={fadeInUp}
                     sx={{
+                      flex: { xs: '0 0 100%', sm: '0 0 45%', md: '0 0 30%' },
+                      maxWidth: { md: '380px' },
+                      scrollSnapAlign: 'start',
                       background: 'rgba(255, 255, 255, 0.05)',
                       backdropFilter: 'blur(10px)',
                       borderRadius: '20px',
                       overflow: 'hidden',
                       border: '1px solid rgba(255, 255, 255, 0.1)',
-                      height: '100%',
                       display: 'flex',
                       flexDirection: 'column',
                       '&:hover': {
@@ -1787,6 +1873,34 @@ const Home = () => {
                     </Box>
                   </Card>
                 ))}
+
+                {/* Right Scroll Button for Frontend */}
+                <Box
+                  sx={{
+                    display: { xs: 'block', md: 'none' },
+                    position: 'absolute',
+                    right: 0,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    zIndex: 2,
+                  }}
+                >
+                  <IconButton
+                    onClick={() => {
+                      const container = document.getElementById('frontend-container');
+                      container.scrollBy({ left: container.offsetWidth, behavior: 'smooth' });
+                    }}
+                    sx={{
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      color: 'white',
+                      '&:hover': {
+                        background: 'rgba(0, 0, 0, 0.9)',
+                      },
+                    }}
+                  >
+                    <ChevronRight />
+                  </IconButton>
+                </Box>
               </Box>
             </Box>
           </motion.div>
