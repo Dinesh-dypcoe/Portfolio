@@ -6,18 +6,11 @@ import {
   Button, 
   Box, 
   IconButton, 
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
 } from '@mui/material';
-import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
-
   const navItems = [
     { title: 'Projects', id: 'projects' },
     { title: 'About', id: 'about' },
@@ -30,26 +23,51 @@ const Navbar = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      // Close mobile menu first
-      setMobileOpen(false);
+      const navContainer = document.getElementById('mobile-nav-container');
+      const clickedItem = document.querySelector(`[data-id="${id}"]`);
+      
+      if (navContainer && clickedItem) {
+        // Get the index of clicked item
+        const currentIndex = navItems.findIndex(item => item.id === id);
+        const totalItems = navItems.length;
+        
+        // Get the exact position of the clicked item
+        const itemPosition = clickedItem.offsetLeft;
+        
+        // If we're at the last item, prepare to scroll back to start
+        if (currentIndex === totalItems - 1) {
+          // First scroll to the last item
+          navContainer.scrollTo({
+            left: itemPosition,
+            behavior: 'smooth'
+          });
+          
+          // Then after a short delay, quickly scroll back to start
+          setTimeout(() => {
+            navContainer.scrollTo({
+              left: 0,
+              behavior: 'auto'
+            });
+          }, 300);
+        } else {
+          // Normal scroll to next item
+          navContainer.scrollTo({
+            left: itemPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
 
-      // First scroll into view
       element.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
       });
-
-      // Then adjust for navbar height
       const navbarHeight = window.innerWidth < 600 ? 64 : 100;
       window.scrollTo({
         top: window.pageYOffset - navbarHeight,
         behavior: 'smooth'
       });
     }
-  };
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
   };
 
   const handlePortfolioClick = (e) => {
@@ -59,106 +77,6 @@ const Navbar = () => {
       behavior: 'smooth'
     });
   };
-
-  const menuVariants = {
-    closed: {
-      opacity: 0,
-      x: 50,
-    },
-    open: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.4,
-        staggerChildren: 0.1,
-        ease: [0.6, -0.05, 0.01, 0.99],
-      },
-    },
-  };
-
-  const itemVariants = {
-    closed: { x: 50, opacity: 0 },
-    open: { x: 0, opacity: 1 },
-  };
-
-  const drawer = (
-    <Box
-      component={motion.div}
-      initial="closed"
-      animate="open"
-      exit="closed"
-      variants={menuVariants}
-      sx={{
-        width: 250,
-        height: '100%',
-        background: 'rgba(3, 0, 20, 0.95)',
-        backdropFilter: 'blur(10px)',
-        display: 'flex',
-        flexDirection: 'column',
-        pt: 8,
-        position: 'relative',
-        zIndex: 9999,
-      }}
-    >
-      <IconButton
-        onClick={handleDrawerToggle}
-        sx={{
-          position: 'absolute',
-          right: 10,
-          top: 10,
-          color: '#00D1FF',
-          '&:hover': {
-            background: 'rgba(0, 209, 255, 0.1)',
-          },
-        }}
-      >
-        <CloseIcon />
-      </IconButton>
-
-      <List>
-        {navItems.map((item, index) => (
-          <motion.div
-            key={item.title}
-            variants={itemVariants}
-            custom={index}
-          >
-            <ListItem 
-              component="div"
-              onClick={() => scrollToSection(item.id)}
-              sx={{
-                color: 'text.primary',
-                py: 2,
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  background: 'rgba(0, 209, 255, 0.1)',
-                  transform: 'translateX(10px)',
-                },
-                cursor: 'pointer',
-                pointerEvents: 'auto',
-                zIndex: 1300,
-                '&:active': {
-                  background: 'rgba(0, 209, 255, 0.2)',
-                },
-              }}
-            >
-              <ListItemText 
-                primary={item.title}
-                sx={{
-                  '& .MuiListItemText-primary': {
-                    fontSize: '1.2rem',
-                    fontWeight: 500,
-                    background: 'linear-gradient(45deg, #00D1FF 30%, #7000FF 90%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                  },
-                }}
-              />
-            </ListItem>
-          </motion.div>
-        ))}
-      </List>
-    </Box>
-  );
 
   useEffect(() => {
     const sections = ['projects', 'about', 'achievements', 'skills', 'experience', 'contact'];
@@ -213,30 +131,80 @@ const Navbar = () => {
           Portfolio
         </Typography>
 
-        {/* Hamburger Menu for Mobile */}
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="start"
-          onClick={handleDrawerToggle}
-          sx={{ 
-            display: { sm: 'none' },
-            color: '#00D1FF',
-            transition: 'transform 0.3s ease',
-            transform: mobileOpen ? 'rotate(90deg)' : 'none',
+        {/* Mobile Navigation */}
+        <Box
+          sx={{
+            display: { xs: 'flex', sm: 'none' },
+            alignItems: 'center',
+            position: 'relative',
+            width: 'calc(100% - 120px)', // Account for Portfolio text
           }}
         >
-          <MenuIcon />
-        </IconButton>
+          <Box
+            id="mobile-nav-container"
+            sx={{
+              display: 'flex',
+              overflowX: 'auto',
+              scrollBehavior: 'smooth',
+              msOverflowStyle: 'none',
+              scrollbarWidth: 'none',
+              '&::-webkit-scrollbar': {
+                display: 'none',
+              },
+              width: '100%',
+              pl: 2, // Left padding only
+              WebkitOverflowScrolling: 'touch',
+            }}
+          >
+            {navItems.map((item) => (
+              <Typography
+                key={item.id}
+                data-id={item.id}
+                onClick={() => scrollToSection(item.id)}
+                component="span"
+                sx={{
+                  color: 'text.primary',
+                  fontSize: '0.875rem',
+                  whiteSpace: 'nowrap',
+                  minWidth: 'auto',
+                  px: 2,
+                  py: 1,
+                  mr: 3,
+                  cursor: 'pointer',
+                  position: 'relative',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    color: '#00D1FF',
+                  },
+                  '&:active': {
+                    transform: 'scale(0.95)',
+                  },
+                  '&::after': {
+                    content: '""',
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '2px',
+                    background: 'linear-gradient(45deg, #00D1FF 30%, #7000FF 90%)',
+                    transform: 'scaleX(0)',
+                    transformOrigin: 'right',
+                    transition: 'transform 0.3s ease',
+                  },
+                  '&:hover::after': {
+                    transform: 'scaleX(1)',
+                    transformOrigin: 'left',
+                  },
+                }}
+              >
+                {item.title}
+              </Typography>
+            ))}
+          </Box>
+        </Box>
 
         {/* Desktop Menu */}
-        <Box 
-          sx={{ 
-            display: { xs: 'none', sm: 'flex' }, 
-            alignItems: 'center', 
-            gap: 3,
-          }}
-        >
+        <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
           {navItems.map((item) => (
             <motion.div
               key={item.title}
@@ -280,41 +248,6 @@ const Navbar = () => {
             </motion.div>
           ))}
         </Box>
-
-        {/* Mobile Drawer */}
-        <AnimatePresence>
-          {mobileOpen && (
-            <Drawer
-              variant="temporary"
-              anchor="right"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-              ModalProps={{
-                keepMounted: true,
-                BackdropProps: {
-                  onClick: handleDrawerToggle,
-                },
-              }}
-              sx={{
-                display: { xs: 'block', sm: 'none' },
-                '& .MuiDrawer-paper': {
-                  boxSizing: 'border-box',
-                  width: 250,
-                  background: 'transparent',
-                  boxShadow: 'none',
-                  zIndex: 1200,
-                },
-                '& .MuiBackdrop-root': {
-                  backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                  backdropFilter: 'blur(4px)',
-                  zIndex: 1150,
-                },
-              }}
-            >
-              {drawer}
-            </Drawer>
-          )}
-        </AnimatePresence>
       </Toolbar>
     </AppBar>
   );
