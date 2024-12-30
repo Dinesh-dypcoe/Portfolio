@@ -123,7 +123,7 @@ const Navbar = () => {
             custom={index}
           >
             <ListItem 
-              button
+              component="div"
               onClick={() => scrollToSection(item.id)}
               sx={{
                 color: 'text.primary',
@@ -136,6 +136,9 @@ const Navbar = () => {
                 cursor: 'pointer',
                 pointerEvents: 'auto',
                 zIndex: 1300,
+                '&:active': {
+                  background: 'rgba(0, 209, 255, 0.2)',
+                },
               }}
             >
               <ListItemText 
