@@ -99,7 +99,6 @@ const Navbar = () => {
         flexDirection: 'column',
         pt: 8,
         position: 'relative',
-        zIndex: 1200,
       }}
     >
       <IconButton
@@ -136,6 +135,8 @@ const Navbar = () => {
                   transform: 'translateX(10px)',
                 },
                 cursor: 'pointer',
+                pointerEvents: 'auto',
+                zIndex: 1300,
               }}
             >
               <ListItemText 
@@ -178,6 +179,7 @@ const Navbar = () => {
         borderBottom: 'none',
         padding: '20px 0',
         transition: 'all 0.3s ease',
+        zIndex: 1100,
       }}
     >
       <Toolbar sx={{ 
@@ -298,10 +300,12 @@ const Navbar = () => {
                   width: 250,
                   background: 'transparent',
                   boxShadow: 'none',
+                  zIndex: 1200,
                 },
                 '& .MuiBackdrop-root': {
                   backgroundColor: 'rgba(0, 0, 0, 0.5)',
                   backdropFilter: 'blur(4px)',
+                  zIndex: 1150,
                 },
               }}
             >
