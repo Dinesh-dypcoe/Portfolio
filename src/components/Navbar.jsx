@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   AppBar, 
   Toolbar, 
@@ -30,18 +30,24 @@ const Navbar = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-      const navbarHeight = 100;
-      const offsetPosition = window.pageYOffset - navbarHeight;
-      window.scrollTo({
-        top: window.pageYOffset - navbarHeight,
-        behavior: 'smooth'
-      });
+      // Close mobile menu first
+      setMobileOpen(false);
+
+      // Wait for drawer to close
+      setTimeout(() => {
+        // Force scroll to element
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Additional offset adjustment after scrollIntoView
+        setTimeout(() => {
+          const navbarOffset = 64;
+          window.scrollBy({
+            top: -navbarOffset,
+            behavior: 'smooth'
+          });
+        }, 100);
+      }, 300);
     }
-    setMobileOpen(false);
   };
 
   const handleDrawerToggle = () => {
@@ -93,6 +99,7 @@ const Navbar = () => {
         flexDirection: 'column',
         pt: 8,
         position: 'relative',
+        zIndex: 1200,
       }}
     >
       <IconButton
@@ -118,8 +125,7 @@ const Navbar = () => {
             custom={index}
           >
             <ListItem 
-              component={Link} 
-              to={item.path}
+              button
               onClick={() => scrollToSection(item.id)}
               sx={{
                 color: 'text.primary',
@@ -129,6 +135,7 @@ const Navbar = () => {
                   background: 'rgba(0, 209, 255, 0.1)',
                   transform: 'translateX(10px)',
                 },
+                cursor: 'pointer',
               }}
             >
               <ListItemText 
@@ -149,6 +156,16 @@ const Navbar = () => {
       </List>
     </Box>
   );
+
+  useEffect(() => {
+    const sections = ['projects', 'about', 'achievements', 'skills', 'experience', 'contact'];
+    sections.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.style.scrollMarginTop = '64px';
+      }
+    });
+  }, []);
 
   return (
     <AppBar

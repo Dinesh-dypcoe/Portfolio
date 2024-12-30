@@ -1472,8 +1472,8 @@ const Home = () => {
       <Box 
         id="projects"
         sx={{ 
-          py: { xs: 8, md: 10 },
-          scrollMarginTop: '100px',
+          py: { xs: 8, md: 15 },
+          scrollMarginTop: '64px',
           pt: { xs: 4, md: 6 },
         }}
       >
