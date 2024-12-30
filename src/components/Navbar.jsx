@@ -33,20 +33,18 @@ const Navbar = () => {
       // Close mobile menu first
       setMobileOpen(false);
 
-      // Wait for drawer to close
-      setTimeout(() => {
-        // Force scroll to element
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        
-        // Additional offset adjustment after scrollIntoView
-        setTimeout(() => {
-          const navbarOffset = 64;
-          window.scrollBy({
-            top: -navbarOffset,
-            behavior: 'smooth'
-          });
-        }, 100);
-      }, 300);
+      // First scroll into view
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+
+      // Then adjust for navbar height
+      const navbarHeight = window.innerWidth < 600 ? 64 : 100;
+      window.scrollTo({
+        top: window.pageYOffset - navbarHeight,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -99,6 +97,7 @@ const Navbar = () => {
         flexDirection: 'column',
         pt: 8,
         position: 'relative',
+        zIndex: 9999,
       }}
     >
       <IconButton
@@ -163,7 +162,7 @@ const Navbar = () => {
     sections.forEach(id => {
       const element = document.getElementById(id);
       if (element) {
-        element.style.scrollMarginTop = '64px';
+        element.style.scrollMarginTop = window.innerWidth < 600 ? '64px' : '100px';
       }
     });
   }, []);
