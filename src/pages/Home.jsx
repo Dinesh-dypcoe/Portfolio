@@ -445,7 +445,7 @@ Let’s team up and create something extraordinary together!
                       textAlign: { xs: 'center', md: 'left' },
                     }}
                   >
-                    🏆Smart India Hackathon 2024 Winner🏆
+                    🏆Smart India Hackathon 2024 Finale Winner🏆
                   </Typography>
                   <Typography
                     component={motion.p}
