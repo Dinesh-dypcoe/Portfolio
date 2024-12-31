@@ -1021,9 +1021,9 @@ Let’s team up and create something extraordinary together!
                   {[
                     { name: 'Node.js', icon: '/nodejs.svg' },
                     { name: 'Express.js', icon: '/express.svg' },
-                    { name: 'MongoDB', icon: '/public/mongodb.svg' },
-                    { name: 'MySQL', icon: '/public/mysql.svg' },
-                    { name: 'REST API', icon: '/public/rest.svg' },
+                    { name: 'MongoDB', icon: '/mongodb.svg' },
+                    { name: 'MySQL', icon: '/mysql.svg' },
+                    { name: 'REST API', icon: '/rest.svg' },
                   ].map((skill) => (
                     <Card
                       key={skill}
@@ -1202,9 +1202,9 @@ Let’s team up and create something extraordinary together!
                   {[
                     { name: 'C', icon: '/c.svg' },
                     { name: 'C++', icon: '/c++.png' },
-                    { name: 'JavaScript', icon: '/public/javascript.svg' },
-                    { name: 'Python', icon: '/public/python.svg' },
-                    { name: 'Java', icon: '/public/java.svg' },
+                    { name: 'JavaScript', icon: '/javascript.svg' },
+                    { name: 'Python', icon: '/python.svg' },
+                    { name: 'Java', icon: '/java.svg' },
                   ].map((skill) => (
                     <Card
                       key={skill}
