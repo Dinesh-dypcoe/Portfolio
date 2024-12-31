@@ -366,11 +366,11 @@ const Home = () => {
                 mb: 4,
               }}
             >
-              I am a passionate Full Stack Developer with expertise in the MERN stack. 
-              With a strong foundation in both frontend and backend development, 
-              I create efficient, scalable, and user-friendly solutions. 
-              I enjoy solving complex problems and am constantly learning new technologies 
-              to stay at the forefront of web development.
+             Hello! I’m Dinesh Aher, a Full Stack Developer and Competitive Programmer with a passion for crafting dynamic, user-focused applications. Proficient in the MERN Stack, I specialize in turning ideas into robust, scalable web solutions while leveraging my strong problem-solving skills honed through competitive programming.
+              <br /><br />
+Currently, I’m in my third year of Information Technology at D.Y. Patil College of Engineering, Akurdi,Pune. I’ve built a solid foundation in data structures and algorithms in C++. I thrive on challenges—whether it’s designing seamless user experiences, optimizing algorithms, or developing innovative solutions.
+<br /><br />
+Let’s team up and create something extraordinary together!
             </Typography>
           </motion.div>
         </Container>
@@ -842,21 +842,7 @@ const Home = () => {
                 >
                 </Box>
               </Box>
-              {/* Experience */}
-              <Box>
-                <Typography sx={{ 
-                  color: 'text.secondary', 
-                  lineHeight: 1.7,
-                  textAlign: { xs: 'center', sm: 'center' },
-                  maxWidth: '800px',
-                  margin: '0 auto',
-                }}>
-                  With over [X] years of experience in full-stack development, 
-                  I've worked on various projects ranging from e-commerce platforms 
-                  to real-time applications. I'm passionate about creating scalable 
-                  and maintainable solutions.
-                </Typography>
-              </Box>
+              
             </Box>
           </motion.div>
         </Container>
@@ -1564,7 +1550,7 @@ const Home = () => {
                     title: "FindYourStay",
                     description: "A comprehensive hotel booking platform with user authentication, room management, booking system,payment integration, map integration and many more features.",
                     technologies: ["Node.js", "Express Js", "MongoDB", "Cloudinary","Javascript","ORS api","Oauth2", "Razorpay", "Bootstrap"],
-                    github: "https://github.com/username/ecommerce",
+                    github: "https://github.com/Dinesh-dypcoe/FindYourStay",
                     demo: "https://findyourstay-iota.vercel.app/listings",
                     image: "/findyourstay.png"
                   },
@@ -1572,7 +1558,7 @@ const Home = () => {
                     title: "नामसिद्धि",
                     description: "नामसिद्धि is an innovative system designed for efficient police record management system which addresses the problem of fuzzy name conversion of hindi names and includes so many features.Here we have designed a hybrid algorithm for fuzzy name conversion which is more accurate than the existing algorithms.",
                     technologies: ["Node.js", "Express Js", "MongoDB", "Javascript","Cloudinary","Tailwind","Bootstrap","Hybrid Algo"],
-                    github: "https://github.com/username/taskapp",
+                    github: "https://github.com/Dinesh-dypcoe/NaamSiddhi",
                     demo: "https://naam-siddhi1.vercel.app/",
                     image: "/naamsiddhi.png"
                   },
@@ -1753,7 +1739,7 @@ const Home = () => {
                     title: "Snake Game",
                     description: "A classic snake game built with modern web technologies, featuring smooth animations and responsive controls.",
                     technologies: ["HTML5", "CSS3", "JavaScript"],
-                    github: "https://github.com/username/snake-game",
+                    github: "https://github.com/Dinesh-dypcoe/SnakeGame",
                     demo: "https://snake-game-two-smoky.vercel.app/",
                     image: "/snakegame.png"
                   },
@@ -1761,7 +1747,7 @@ const Home = () => {
                     title: "Rock Paper Scissors",
                     description: "An interactive rock paper scissors game using html,css and javascript",
                     technologies: ["HTML5", "CSS3", "JavaScript"],
-                    github: "https://github.com/username/rock-paper-scissors",
+                    github: "https://github.com/Dinesh-dypcoe/rock-paper-scissor-game",
                     demo: "https://dinesh-dypcoe.github.io/rock-paper-scissor-game/",
                     image: "/rockpaperscissor.png"
                   },
@@ -1769,7 +1755,7 @@ const Home = () => {
                     title: "Amazon Clone",
                     description: "A frontend clone of Amazon's e-commerce platform with product listings and cart functionality.",
                     technologies: ["HTML5", "CSS3"],
-                    github: "https://github.com/username/amazon-clone",
+                    github: "https://github.com/Dinesh-dypcoe/amazon-clone",
                     demo: "https://dinesh-dypcoe.github.io/amazon-clone/",
                     image: "/amazonclone.png"
                   }
