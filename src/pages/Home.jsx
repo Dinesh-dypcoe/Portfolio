@@ -1,6 +1,6 @@
 import { Container, Typography, Box, Button, Card, Chip, IconButton, TextField } from '@mui/material';
 import { motion } from 'framer-motion';
-import { ArrowForward, GitHub, Launch, ChevronLeft, ChevronRight, LinkedIn } from '@mui/icons-material';
+import { ArrowForward, GitHub, Launch, ChevronLeft, ChevronRight, LinkedIn, GetApp } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -238,31 +238,116 @@ const Home = () => {
 
             <motion.div 
               variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                gap: { xs: '20px', sm: '24px', md: '28px' },
+                alignItems: 'flex-start',
+                justifyContent: { xs: 'center', md: 'flex-start' },
+                flexWrap: 'nowrap',
+                minWidth: 'fit-content',
+              }}
             >
-              <Button
-                onClick={() => {
-                  document.getElementById('projects').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                  });
+              <motion.div
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
                 }}
-                variant="contained"
-                size="large"
-                endIcon={<ArrowForward />}
-                sx={{
-                  borderRadius: '50px',
-                  padding: '12px 32px',
-                  background: 'linear-gradient(45deg, #00D1FF 30%, #7000FF 90%)',
-                  boxShadow: '0 4px 14px 0 rgba(0, 209, 255, 0.39)',
-                  '&:hover': {
-                    background: 'linear-gradient(45deg, #00A3FF 30%, #5200B3 90%)',
-                  },
+                whileTap={{ 
+                  scale: 0.98,
+                  transition: { duration: 0.1 }
                 }}
+                style={{ display: 'inline-block' }}
               >
-                View My Work
-              </Button>
+                <Button
+                  onClick={() => {
+                    document.getElementById('projects').scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start'
+                    });
+                  }}
+                  variant="outlined"
+                  size="large"
+                  endIcon={<ArrowForward />}
+                  sx={{
+                    borderRadius: '50px',
+                    padding: { 
+                      xs: '8px 20px',
+                      sm: '10px 24px',
+                      md: '12px 28px'
+                    },
+                    fontSize: { 
+                      xs: '0.8rem', 
+                      sm: 'clamp(0.8rem, 1.5vw, 0.95rem)', 
+                      md: 'clamp(0.9rem, 1vw, 1rem)' 
+                    },
+                    borderColor: '#00D1FF',
+                    color: '#00D1FF',
+                    marginRight: { md: '1rem', sm:'1rem', xs:'1rem'},
+                    marginBottom: { xs: '1rem', sm: '1rem' },
+                    '&:hover': {
+                      borderColor: '#7000FF',
+                      background: 'linear-gradient(45deg, rgba(0, 209, 255, 0.1) 30%, rgba(112, 0, 255, 0.1) 90%)',
+                      transform: 'translateY(-2px)',
+                      boxShadow: '0 4px 12px rgba(0, 209, 255, 0.2)',
+                    },
+                    transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap',
+                    minWidth: 'fit-content',
+                  }}
+                >
+                  View My Work
+                </Button>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+                whileTap={{ 
+                  scale: 0.98,
+                  transition: { duration: 0.1 }
+                }}
+                style={{ display: 'inline-block' }}
+              >
+                <Button
+                  component="a"
+                  href="/Resume_Dinesh.pdf"
+                  download
+                  variant="outlined"
+                  size="large"
+                  endIcon={<GetApp />}
+                  sx={{
+                    borderRadius: '50px',
+                    padding: { 
+                      xs: '8px 20px',
+                      sm: '10px 24px',
+                      md: '12px 28px'
+                    },
+                    fontSize: { 
+                      xs: '0.8rem', 
+                      sm: 'clamp(0.8rem, 1.5vw, 0.95rem)', 
+                      md: 'clamp(0.9rem, 1vw, 1rem)' 
+                    },
+                    borderColor: '#00D1FF',
+                    color: '#00D1FF',
+                    marginRight: { md: '1rem', sm:'1rem', xs:'1rem'},
+                    marginBottom: { xs: '1rem', sm: '1rem' },
+                    '&:hover': {
+                      borderColor: '#7000FF',
+                      background: 'linear-gradient(45deg, rgba(0, 209, 255, 0.1) 30%, rgba(112, 0, 255, 0.1) 90%)',
+                      transform: 'translateY(-2px)',
+                      boxShadow: '0 4px 12px rgba(0, 209, 255, 0.2)',
+                    },
+                    transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap',
+                    minWidth: 'fit-content',
+                  }}
+                >
+                  Download Resume
+                </Button>
+              </motion.div>
             </motion.div>
           </Box>
 
