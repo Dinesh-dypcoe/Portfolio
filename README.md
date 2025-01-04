@@ -42,7 +42,7 @@ This section highlights some of my key achievements:
 
 ## 🌐 Live Demo
 You can view my portfolio live here:  
-[**My Portfolio**](https://portfolio-dinesh-delta.vercel.app/) (Link to be updated)
+[**My Portfolio**](https://portfolio-dinesh-delta.vercel.app/)
 
 ## 🚀 Getting Started
 To run my **Portfolio** locally, follow these steps:
@@ -72,7 +72,7 @@ To run my **Portfolio** locally, follow these steps:
 6. Enjoy exploring my portfolio! 😄
 
 ## 📞 Contact
-For any inquiries or feedback, feel free to reach out to me at [your_email@example.com](mailto:your_email@example.com).
+For any inquiries or feedback, feel free to reach out to me at [dineshaher2505@gmail.com](mailto:dineshaher2505@gmail.com).
 
 ## 📝 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
