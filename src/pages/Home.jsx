@@ -973,6 +973,41 @@ Let's team up and create something extraordinary together!
                   >
                     Solved 500+ problems across major coding platforms including LeetCode, GeeksforGeeks, CodeChef, and Coding Ninjas. 
                     Achieved 557 submissions on LeetCode in 2024, demonstrating consistent problem-solving skills and algorithmic thinking.
+                    <br />
+                    <Box 
+                      component="a" 
+                      href="https://leetcode.com/u/dineshaher/" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{
+                        display: 'inline-block',
+                        mt: 2,
+                        color: '#00D1FF',
+                        textDecoration: 'none',
+                        position: 'relative',
+                        '&::after': {
+                          content: '""',
+                          position: 'absolute',
+                          width: '100%',
+                          height: '2px',
+                          bottom: -2,
+                          left: 0,
+                          background: 'linear-gradient(45deg, #00D1FF, #7000FF)',
+                          transform: 'scaleX(0)',
+                          transformOrigin: 'right',
+                          transition: 'transform 0.3s ease',
+                        },
+                        '&:hover': {
+                          color: '#7000FF',
+                          '&::after': {
+                            transform: 'scaleX(1)',
+                            transformOrigin: 'left',
+                          },
+                        },
+                      }}
+                    >
+                      View LeetCode Profile →
+                    </Box>
                   </Typography>
                 </Box>
 
