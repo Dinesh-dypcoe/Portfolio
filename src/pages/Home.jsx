@@ -17,17 +17,15 @@ const TypewriterText = ({ text }) => {
       }, 150);
       return () => clearTimeout(timer);
     }
-    // Reset after completion to create infinite loop
     else {
       const resetTimer = setTimeout(() => {
         setDisplayText('');
         setIndex(0);
-      }, 2000); // Wait 2 seconds before restarting
+      }, 2000);
       return () => clearTimeout(resetTimer);
     }
   }, [index, text]);
 
-  // Blinking cursor effect
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setShowCursor((prev) => !prev);
@@ -36,34 +34,44 @@ const TypewriterText = ({ text }) => {
   }, []);
 
   return (
-    <Typography 
-      variant="h2" 
-      sx={{ 
-        fontSize: { xs: '1.5rem', md: '2rem' },
-        background: 'linear-gradient(45deg, #00D1FF 30%, #7000FF 90%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        fontWeight: 'bold',
-        mb: 2,
-        whiteSpace: 'pre',
-        display: 'inline-block',
+    <Box
+      sx={{
+        height: { xs: '2rem', md: '2.5rem' },
+        width: text.length + 'ch',
         position: 'relative',
-        '&::after': {
-          content: '""',
-          width: '2px',
-          height: '100%',
-          background: '#00D1FF',
-          position: 'absolute',
-          right: '-4px',
-          top: 0,
-          opacity: showCursor ? 1 : 0,
-          transition: 'opacity 0.1s',
-          display: 'block', // Always show cursor
-        },
+        mb: 2,
       }}
     >
-      {displayText}
-    </Typography>
+      <Typography 
+        variant="h2" 
+        sx={{ 
+          fontSize: { xs: '1.5rem', md: '2rem' },
+          background: 'linear-gradient(45deg, #00D1FF 30%, #7000FF 90%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          fontWeight: 'bold',
+          position: 'absolute',
+          left: 0,
+          whiteSpace: 'pre',
+          display: 'inline-block',
+          position: 'relative',
+          '&::after': {
+            content: '""',
+            width: '2px',
+            height: '100%',
+            background: '#00D1FF',
+            position: 'absolute',
+            right: '-4px',
+            top: 0,
+            opacity: showCursor ? 1 : 0,
+            transition: 'opacity 0.1s',
+            display: 'block',
+          },
+        }}
+      >
+        {displayText}
+      </Typography>
+    </Box>
   );
 };
 
@@ -354,14 +362,6 @@ const Home = () => {
           {/* Right Side - Image Card */}
           <Box
             component={motion.div}
-            animate={{ 
-              y: [0, -15, 0] 
-            }}
-            transition={{ 
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
             sx={{
               flex: 1,
               display: 'flex',
@@ -371,26 +371,65 @@ const Home = () => {
           >
             <Card
               sx={{
-                width: { xs: '280px', sm: '350px', md: '450px' },
-                height: { xs: '350px', sm: '450px', md: '550px' },
+                width: { xs: '250px', sm: '300px', md: '400px' },
+                height: { xs: '300px', sm: '400px', md: '500px' },
                 background: 'rgba(255, 255, 255, 0.05)',
                 backdropFilter: 'blur(10px)',
                 borderRadius: '20px',
                 overflow: 'hidden',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
                 position: 'relative',
+                padding: '3px',
+                background: `linear-gradient(
+                  45deg,
+                  #00D1FF,
+                  #7000FF,
+                  #00D1FF,
+                  #7000FF
+                )`,
+                backgroundSize: '400% 400%',
+                animation: 'gradientBorder 8s ease infinite',
+                '@keyframes gradientBorder': {
+                  '0%': {
+                    backgroundPosition: '0% 50%',
+                  },
+                  '50%': {
+                    backgroundPosition: '100% 50%',
+                  },
+                  '100%': {
+                    backgroundPosition: '0% 50%',
+                  },
+                },
+                boxShadow: '0 0 30px rgba(0, 209, 255, 0.2)',
               }}
             >
               <Box
-                component="img"
-                src="/photo.jpg"
-                alt="Profile"
                 sx={{
                   width: '100%',
                   height: '100%',
-                  objectFit: 'cover',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  backdropFilter: 'blur(10px)',
+                  borderRadius: '18px',
+                  overflow: 'hidden',
+                  position: 'relative',
                 }}
-              />
+              >
+                <Box
+                  component="img"
+                  src="/photo.jpg"
+                  alt="Profile"
+                  sx={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    position: 'relative',
+                    zIndex: 2,
+                    transition: 'transform 0.3s ease',
+                    '&:hover': {
+                      transform: 'scale(1.02)',
+                    },
+                  }}
+                />
+              </Box>
               {/* Gradient Overlay */}
               <Box
                 sx={{
@@ -400,6 +439,7 @@ const Home = () => {
                   right: 0,
                   bottom: 0,
                   background: 'linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%)',
+                  zIndex: 3,
                 }}
               />
             </Card>
@@ -451,11 +491,11 @@ const Home = () => {
                 mb: 4,
               }}
             >
-             Hello! I’m Dinesh Aher, a Full Stack Developer and Competitive Programmer with a passion for crafting dynamic, user-focused applications. Proficient in the MERN Stack, I specialize in turning ideas into robust, scalable web solutions while leveraging my strong problem-solving skills honed through competitive programming.
+             Hello! I'm Dinesh Aher, a Full Stack Developer and Competitive Programmer with a passion for crafting dynamic, user-focused applications. Proficient in the MERN Stack, I specialize in turning ideas into robust, scalable web solutions while leveraging my strong problem-solving skills honed through competitive programming.
               <br /><br />
-Currently, I’m in my third year of Information Technology at D.Y. Patil College of Engineering, Akurdi,Pune. I’ve built a solid foundation in data structures and algorithms in C++. I thrive on challenges—whether it’s designing seamless user experiences, optimizing algorithms, or developing innovative solutions.
+Currently, I'm in my third year of Information Technology at D.Y. Patil College of Engineering, Akurdi,Pune. I've built a solid foundation in data structures and algorithms in C++ & leading the Competitive Programming & Mentorship Club as Vice Admiral at my college. I thrive on challenges—whether it's designing seamless user experiences, optimizing algorithms, or developing innovative solutions.
 <br /><br />
-Let’s team up and create something extraordinary together!
+Let's team up and create something extraordinary together!
             </Typography>
           </motion.div>
         </Container>
@@ -893,41 +933,273 @@ Let’s team up and create something extraordinary together!
                   </Box>
                 </Box>
               </Box>
-            </Box>
 
-            {/* Experience Description */}
-            <Box
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: '1fr',
-                gap: { xs: 4, md: 6 },
-                maxWidth: '800px',
-                margin: '0 auto',
-              }}
-            >
-              {/* Skills */}
-              <Box>
-                <Typography 
-                  variant="h5" 
-                  sx={{ 
-                    mb: 3,
-                    color: 'text.primary',
-                    fontSize: { xs: '1.2rem', sm: '1.4rem', md: '1.5rem' },
-                  }}
-                >
-                
-                </Typography>
+              {/* Competitive Programming Achievement */}
+              <Box
+                component={motion.div}
+                variants={fadeInUp}
+                sx={{
+                  display: 'flex',
+                  flexDirection: { xs: 'column', md: 'row' },
+                  gap: 4,
+                  alignItems: 'center',
+                }}
+              >
+                {/* Description */}
                 <Box 
-                  sx={{ 
-                    display: 'flex', 
-                    flexWrap: 'wrap', 
-                    gap: 2,
-                    justifyContent: 'flex-start',
-                  }}
+                  component={motion.div}
+                  variants={fadeInUp}
+                  sx={{ flex: 1 }}
                 >
+                  <Typography
+                    component={motion.h5}
+                    variants={fadeInUp}
+                    variant="h5"
+                    sx={{
+                      color: '#00D1FF',
+                      fontWeight: 600,
+                      mb: 2,
+                      textAlign: { xs: 'center', md: 'left' },
+                    }}
+                  >
+                    Data Structures & Algorithms
+                  </Typography>
+                  <Typography
+                    sx={{
+                      color: 'text.secondary',
+                      textAlign: { xs: 'center', md: 'left' },
+                      lineHeight: 1.7,
+                    }}
+                  >
+                    Solved 500+ problems across major coding platforms including LeetCode, GeeksforGeeks, CodeChef, and Coding Ninjas. 
+                    Achieved 557 submissions on LeetCode in 2024, demonstrating consistent problem-solving skills and algorithmic thinking.
+                  </Typography>
+                </Box>
+
+                {/* Image Carousel */}
+                <Box sx={{ flex: 1, position: 'relative' }}>
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      left: 10,
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      zIndex: 2,
+                      display: 'block',
+                    }}
+                  >
+                    <IconButton
+                      onClick={() => {
+                        const container = document.getElementById('leetcode-container');
+                        if (container) {
+                          container.scrollBy({ left: -container.offsetWidth, behavior: 'smooth' });
+                        }
+                      }}
+                      sx={{
+                        background: 'rgba(0, 0, 0, 0.5)',
+                        color: 'white',
+                        '&:hover': {
+                          background: 'rgba(0, 0, 0, 0.7)',
+                        },
+                        width: { xs: '30px', md: '40px' },
+                        height: { xs: '30px', md: '40px' },
+                      }}
+                    >
+                      <ChevronLeft />
+                    </IconButton>
+                  </Box>
+
+                  <Box
+                    id="leetcode-container"
+                    sx={{
+                      display: 'flex',
+                      overflowX: 'auto',
+                      pb: { xs: 2, md: 0 },
+                      mx: { xs: -2, md: 0 },
+                      px: { xs: 2, md: 0 },
+                      width: '100%',
+                      height: { xs: 'auto', md: 'auto' },
+                      '&::-webkit-scrollbar': {
+                        display: 'none'
+                      },
+                      msOverflowStyle: 'none',
+                      scrollbarWidth: 'none',
+                      scrollSnapType: 'x mandatory',
+                      WebkitOverflowScrolling: 'touch',
+                      position: 'relative',
+                    }}
+                  >
+                    {['/leetcode1.png', '/leetcode2.png'].map((img, index) => (
+                      <Box
+                        key={index}
+                        component="img"
+                        src={img}
+                        alt={`LeetCode Achievement ${index + 1}`}
+                        sx={{
+                          height: { xs: '180px', sm: '220px', md: '300px' },
+                          minWidth: '100%',
+                          maxWidth: '100%',
+                          flex: '0 0 100%',
+                          objectFit: 'fill',
+                          borderRadius: '10px',
+                          border: '1px solid rgba(255, 255, 255, 0.1)',
+                          background: 'rgba(255, 255, 255, 0.05)',
+                          backdropFilter: 'blur(10px)',
+                          transition: 'transform 0.3s ease',
+                          scrollSnapAlign: 'center',
+                          p: 0,
+                          position: 'relative',
+                          '&:hover': {
+                            transform: 'scale(1.02)',
+                          },
+                        }}
+                      />
+                    ))}
+                  </Box>
+
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      right: 10,
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      zIndex: 2,
+                      display: 'block',
+                    }}
+                  >
+                    <IconButton
+                      onClick={() => {
+                        const container = document.getElementById('leetcode-container');
+                        if (container) {
+                          container.scrollBy({ left: container.offsetWidth, behavior: 'smooth' });
+                        }
+                      }}
+                      sx={{
+                        background: 'rgba(0, 0, 0, 0.5)',
+                        color: 'white',
+                        '&:hover': {
+                          background: 'rgba(0, 0, 0, 0.7)',
+                        },
+                        width: { xs: '30px', md: '40px' },
+                        height: { xs: '30px', md: '40px' },
+                      }}
+                    >
+                      <ChevronRight />
+                    </IconButton>
+                  </Box>
                 </Box>
               </Box>
-              
+
+              {/* Experience Description */}
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr',
+                  gap: { xs: 4, md: 6 },
+                  maxWidth: '800px',
+                  margin: '0 auto',
+                }}
+              >
+                {/* Skills */}
+                <Box>
+                  <Typography 
+                    variant="h5" 
+                    sx={{ 
+                      mb: 3,
+                      color: 'text.primary',
+                      fontSize: { xs: '1.2rem', sm: '1.4rem', md: '1.5rem' },
+                    }}
+                  >
+                  
+                  </Typography>
+                  <Box 
+                    sx={{ 
+                      display: 'flex', 
+                      flexWrap: 'wrap', 
+                      gap: 2,
+                      justifyContent: 'flex-start',
+                    }}
+                  >
+                  </Box>
+                </Box>
+                
+              </Box>
+
+              {/* After LeetCode Achievement Box */}
+              {/* Cummins Scholarship Achievement */}
+              <Box
+                component={motion.div}
+                variants={fadeInUp}
+                sx={{
+                  display: 'flex',
+                  flexDirection: { xs: 'column', md: 'row' },
+                  gap: 4,
+                  alignItems: 'center',
+                }}
+              >
+                <Box 
+                  component={motion.div}
+                  variants={fadeInUp}
+                  sx={{ flex: 1 }}
+                >
+                  <Typography
+                    component={motion.h5}
+                    variants={fadeInUp}
+                    variant="h5"
+                    sx={{
+                      color: '#00D1FF',
+                      fontWeight: 600,
+                      mb: 2,
+                      textAlign: { xs: 'center', md: 'left' },
+                    }}
+                  >
+                    Cummins India Scholar
+                  </Typography>
+                  <Typography
+                    sx={{
+                      color: 'text.secondary',
+                      textAlign: { xs: 'center', md: 'left' },
+                      lineHeight: 1.7,
+                    }}
+                  >
+                    Selected among top 300 students out of 10,000+ applicants for the prestigious Cummins India Scholarship. 
+                    The selection process included a rigorous interview round, demonstrating academic excellence and leadership potential.
+                  </Typography>
+                </Box>
+
+                {/* Image section commented out for now
+                  <Box
+                    component={motion.div}
+                    variants={fadeInUp}
+                    sx={{
+                      flex: 1,
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src="/cummins.png"
+                      alt="Cummins Scholarship"
+                      sx={{
+                        width: { xs: '100%', sm: '80%', md: '70%' },
+                        maxHeight: { xs: '200px', sm: '250px', md: '300px' },
+                        objectFit: 'contain',
+                        borderRadius: '10px',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        backdropFilter: 'blur(10px)',
+                        p: 3,
+                        transition: 'transform 0.3s ease',
+                        '&:hover': {
+                          transform: 'scale(1.02)',
+                        },
+                      }}
+                    />
+                  </Box>
+                */}
+              </Box>
             </Box>
           </motion.div>
         </Container>
@@ -1461,9 +1733,11 @@ Let’s team up and create something extraordinary together!
                     2024 - Present
                   </Typography>
                   <Typography sx={{ color: 'text.secondary' }}>
-                    Leading the Competitive Programming and Mentorship club as Vice-Admiral, 
-                    organizing coding contests, mentoring juniors, and fostering a culture of 
-                    algorithmic problem-solving.
+                    • Leading the Competitive Programming and Mentorship club as Vice-Admiral<br />
+                    • Conducted 10+ coding contests and hackathons, engaging over 500+ students and fostering a competitive
+                    programming culture.<br />
+                    • Mentored 50+ juniors, providing guidance in data structures, algorithms, and competitive programming<br />
+                    • Fostering a culture of competitive programming and problem-solving
                   </Typography>
                 </Box>
               </Box>
@@ -1530,7 +1804,9 @@ Let’s team up and create something extraordinary together!
                     2023 - 2024
                   </Typography>
                   <Typography sx={{ color: 'text.secondary' }}>
-                    Appointed as a Gunner in the club after coding contest and interview.Worked on the problem solving skills and now i am leading the club as Vice-Admiral.
+                    • Appointed as a Gunner in the club after coding contest and interview.<br />
+                    • Worked on the problem solving skills and now i am leading the club as Vice-Admiral<br />
+
                   </Typography>
                 </Box>
               </Box>
