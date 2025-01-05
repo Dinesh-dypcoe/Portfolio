@@ -974,7 +974,7 @@ Let's team up and create something extraordinary together!
                     }}
                   >
                     Solved 500+ problems across major coding platforms including LeetCode, GeeksforGeeks, CodeChef, and Coding Ninjas. 
-                    Achieved 557 submissions on LeetCode in 2024, demonstrating consistent problem-solving skills and algorithmic thinking.
+                    I had 557 submissions on LeetCode in 2024, demonstrating consistent problem-solving skills and algorithmic thinking.
                     <br />
                     <Box 
                       component="a" 
