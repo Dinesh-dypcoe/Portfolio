@@ -1,6 +1,6 @@
-import { Container, Typography, Box, Button, Card, Chip, IconButton, TextField } from '@mui/material';
+import { Container, Typography, Box, Button, Card, Chip, IconButton, TextField, Snackbar, Alert } from '@mui/material';
 import { motion } from 'framer-motion';
-import { ArrowForward, GitHub, Launch, ChevronLeft, ChevronRight, LinkedIn, GetApp } from '@mui/icons-material';
+import { ArrowForward, GitHub, Launch, ChevronLeft, ChevronRight, LinkedIn, GetApp, CheckCircleOutline } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -77,25 +77,27 @@ const TypewriterText = ({ text }) => {
 
 const Home = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const form = e.target;
+    setFormSubmitted(true);
     
     try {
-      const response = await fetch(form.action, {
+      const response = await fetch(e.target.action, {
         method: 'POST',
-        body: new FormData(form),
+        body: new FormData(e.target),
       });
       
       if (response.ok) {
-        form.reset();
-        setFormSubmitted(true);
-        // Reset the submitted state after 3 seconds
-        setTimeout(() => setFormSubmitted(false), 3000);
+        e.target.reset();
+        setShowNotification(true);
+        setTimeout(() => {
+          setFormSubmitted(false);
+        }, 5000);
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error:', error);
     }
   };
 
@@ -2533,6 +2535,48 @@ Let's team up and create something extraordinary together!
           </Box>
         </Container>
       </Box>
+
+      <Snackbar
+        open={showNotification}
+        autoHideDuration={4000}
+        onClose={() => setShowNotification(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert
+          icon={<CheckCircleOutline sx={{ color: '#00D1FF' }} />}
+          onClose={() => setShowNotification(false)}
+          sx={{
+            background: 'rgba(255, 255, 255, 0.05)',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(0, 209, 255, 0.3)',
+            borderRadius: '15px',
+            color: 'white',
+            '& .MuiAlert-message': {
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1,
+              fontSize: '1rem',
+            },
+            '& .MuiAlert-icon': {
+              fontSize: '2rem',
+            },
+            animation: 'slideUp 0.3s ease-out',
+            '@keyframes slideUp': {
+              from: {
+                transform: 'translateY(100%)',
+                opacity: 0,
+              },
+              to: {
+                transform: 'translateY(0)',
+                opacity: 1,
+              }
+            },
+            boxShadow: '0 8px 32px rgba(0, 209, 255, 0.2)',
+          }}
+        >
+          Message sent successfully! 🎉
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
