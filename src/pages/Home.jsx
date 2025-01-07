@@ -1964,7 +1964,7 @@ Let's team up and create something extraordinary together!
                     title: "College Hackathon Event Website",
                     description: "Designed and developed a responsive hackathon website for college using React, Integrated custom design elements to create a visually captivating and functional interface for users. The platform includes participant registration, event timeline, guidelines, contact section, about us, FAQ's and real-time updates, optimized for seamless navigation.",
                     technologies: ["React Js","Tailwind","Particles.js","Custom Fonts"],
-                    github: "https://github.com/AaryanPalve5/Magnitude",
+                    github: "https://github.com/Dinesh-dypcoe/Magnitude",
                     demo: "https://magnitude-six.vercel.app/",
                     image: "/magnitude.png"
                   }
