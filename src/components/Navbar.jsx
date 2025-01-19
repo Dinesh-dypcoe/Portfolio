@@ -69,8 +69,23 @@ const Navbar = () => {
   };
 
   const handleMobileNavClick = (id) => {
-    scrollToSection(id);
+    // Close drawer first
     setMobileOpen(false);
+    
+    // Small delay to ensure drawer closes before scrolling
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        const navbarHeight = 64; // Mobile navbar height
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
   };
 
   useEffect(() => {
