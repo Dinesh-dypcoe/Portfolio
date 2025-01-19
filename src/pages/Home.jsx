@@ -507,9 +507,9 @@ Let's team up and create something extraordinary together!
       <Box 
         id="achievements"
         sx={{ 
-          pt: { xs: 12, md: 15 }, // Increased top padding for mobile
-          pb: { xs: 8, md: 15 },
-          scrollMarginTop: { xs: '64px', md: '100px' }, // Adjusted scroll margin for mobile
+          py: { xs: 8, md: 15 },
+          scrollMarginTop: { xs: '150px', md: '100px' },  // Increased mobile margin further
+          mt: { xs: 2, md: 0 },  // Added small top margin for mobile
           position: 'relative',
         }}
       >
@@ -518,7 +518,7 @@ Let's team up and create something extraordinary together!
             variants={staggerContainer}
             initial="initial"
             whileInView="whileInView"
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.1 }}  // Adjusted viewport trigger
           >
             <Typography
               component={motion.h2}
