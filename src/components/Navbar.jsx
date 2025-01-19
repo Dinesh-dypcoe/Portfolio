@@ -76,16 +76,14 @@ const Navbar = () => {
     setTimeout(() => {
       const element = document.getElementById(id);
       if (element) {
-        const navbarHeight = 64; // Mobile navbar height
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - navbarHeight;
-        
-        window.scrollTo({
-          top: offsetPosition,
+        element.scrollIntoView();
+        // Adjust for navbar height
+        window.scrollBy({
+          top: -64,  // Mobile navbar height
           behavior: 'smooth'
         });
       }
-    }, 100);
+    }, 50); // Reduced delay for better responsiveness
   };
 
   useEffect(() => {
@@ -93,7 +91,11 @@ const Navbar = () => {
     sections.forEach(id => {
       const element = document.getElementById(id);
       if (element) {
-        element.style.scrollMarginTop = `${window.innerWidth < 600 ? 64 : 100}px`;
+        if (window.innerWidth < 600) {
+          element.style.scrollMarginTop = '64px';
+        } else {
+          element.style.scrollMarginTop = '100px';
+        }
       }
     });
     
@@ -102,7 +104,11 @@ const Navbar = () => {
       sections.forEach(id => {
         const element = document.getElementById(id);
         if (element) {
-          element.style.scrollMarginTop = `${window.innerWidth < 600 ? 64 : 100}px`;
+          if (window.innerWidth < 600) {
+            element.style.scrollMarginTop = '64px';
+          } else {
+            element.style.scrollMarginTop = '100px';
+          }
         }
       });
     };
