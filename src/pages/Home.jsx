@@ -507,8 +507,10 @@ Let's team up and create something extraordinary together!
       <Box 
         id="achievements"
         sx={{ 
-          py: { xs: 8, md: 15 },
-          scrollMarginTop: '100px',
+          pt: { xs: 12, md: 15 }, // Increased top padding for mobile
+          pb: { xs: 8, md: 15 },
+          scrollMarginTop: { xs: '64px', md: '100px' }, // Adjusted scroll margin for mobile
+          position: 'relative',
         }}
       >
         <Container maxWidth="lg">

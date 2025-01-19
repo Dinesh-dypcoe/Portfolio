@@ -5,12 +5,19 @@ import {
   Typography, 
   Button, 
   Box, 
-  IconButton, 
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
 } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const Navbar = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   const navItems = [
     { title: 'Projects', id: 'projects' },
     { title: 'About', id: 'about' },
@@ -78,6 +85,15 @@ const Navbar = () => {
     });
   };
 
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const handleMobileNavClick = (id) => {
+    scrollToSection(id);
+    setMobileOpen(false);
+  };
+
   useEffect(() => {
     const sections = ['projects', 'about', 'achievements', 'skills', 'experience', 'contact'];
     sections.forEach(id => {
@@ -131,77 +147,20 @@ const Navbar = () => {
           Portfolio
         </Typography>
 
-        {/* Mobile Navigation */}
-        <Box
-          sx={{
+        {/* Hamburger Menu Button */}
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          edge="end"
+          onClick={handleDrawerToggle}
+          sx={{ 
             display: { xs: 'flex', sm: 'none' },
-            alignItems: 'center',
-            position: 'relative',
-            width: 'calc(100% - 120px)', // Account for Portfolio text
+            ml: 'auto',
+            color: '#00D1FF',
           }}
         >
-          <Box
-            id="mobile-nav-container"
-            sx={{
-              display: 'flex',
-              overflowX: 'auto',
-              scrollBehavior: 'smooth',
-              msOverflowStyle: 'none',
-              scrollbarWidth: 'none',
-              '&::-webkit-scrollbar': {
-                display: 'none',
-              },
-              width: '100%',
-              pl: 2, // Left padding only
-              WebkitOverflowScrolling: 'touch',
-            }}
-          >
-            {navItems.map((item) => (
-              <Typography
-                key={item.id}
-                data-id={item.id}
-                onClick={() => scrollToSection(item.id)}
-                component="span"
-                sx={{
-                  color: 'text.primary',
-                  fontSize: '0.875rem',
-                  whiteSpace: 'nowrap',
-                  minWidth: 'auto',
-                  px: 2,
-                  py: 1,
-                  mr: 3,
-                  cursor: 'pointer',
-                  position: 'relative',
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    color: '#00D1FF',
-                  },
-                  '&:active': {
-                    transform: 'scale(0.95)',
-                  },
-                  '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '2px',
-                    background: 'linear-gradient(45deg, #00D1FF 30%, #7000FF 90%)',
-                    transform: 'scaleX(0)',
-                    transformOrigin: 'right',
-                    transition: 'transform 0.3s ease',
-                  },
-                  '&:hover::after': {
-                    transform: 'scaleX(1)',
-                    transformOrigin: 'left',
-                  },
-                }}
-              >
-                {item.title}
-              </Typography>
-            ))}
-          </Box>
-        </Box>
+          <MenuIcon />
+        </IconButton>
 
         {/* Desktop Menu */}
         <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
@@ -248,6 +207,54 @@ const Navbar = () => {
             </motion.div>
           ))}
         </Box>
+
+        {/* Mobile Drawer */}
+        <Drawer
+          anchor="right"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          sx={{
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': {
+              width: 240,
+              background: 'rgba(3, 0, 20, 0.95)',
+              backdropFilter: 'blur(10px)',
+              borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
+              boxShadow: '-4px 0 15px rgba(0, 0, 0, 0.5)',
+            },
+          }}
+        >
+          <List sx={{ pt: 2 }}>
+            {navItems.map((item) => (
+              <ListItem 
+                key={item.id}
+                onClick={() => handleMobileNavClick(item.id)}
+                sx={{
+                  py: 2,
+                  '&:hover': {
+                    background: 'rgba(0, 209, 255, 0.1)',
+                  },
+                }}
+              >
+                <ListItemText
+                  primary={item.title}
+                  sx={{
+                    '& .MuiTypography-root': {
+                      color: 'text.primary',
+                      fontSize: '1.1rem',
+                      fontWeight: 500,
+                      textAlign: 'center',
+                      transition: 'color 0.3s ease',
+                    },
+                    '&:hover .MuiTypography-root': {
+                      color: '#00D1FF',
+                    },
+                  }}
+                />
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
       </Toolbar>
     </AppBar>
   );
