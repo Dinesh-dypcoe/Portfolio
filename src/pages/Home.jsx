@@ -1856,9 +1856,9 @@ Let's team up and create something extraordinary together!
       <Box 
         id="projects"
         sx={{ 
-          py: { xs: 8, md: 15 },
-          scrollMarginTop: '64px',
-          pt: { xs: 4, md: 6 },
+          scrollMarginTop: { xs: '80px', md: '120px' },  // Increased margin to account for navbar
+          mt: { xs: 4, md: 6 },  // Added top margin
+          pb: { xs: 8, md: 15 },  // Keep bottom padding
         }}
       >
         <Container maxWidth="lg">
@@ -1876,7 +1876,7 @@ Let's team up and create something extraordinary together!
                 fontSize: { xs: '1.8rem', sm: '2rem', md: '2.5rem' },
                 fontWeight: 'bold',
                 textAlign: 'center',
-                mb: 6,
+                mb: { xs: 4, md: 6 },
                 background: 'linear-gradient(45deg, #00D1FF 30%, #7000FF 90%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -1967,6 +1967,14 @@ Let's team up and create something extraordinary together!
                     github: "https://github.com/Dinesh-dypcoe/Magnitude",
                     demo: "https://magnitude-six.vercel.app/",
                     image: "/magnitude.png"
+                  },
+                  {
+                    title: "Hospital Pantry Management System",
+                    description: "Built a web application to manage patient diet charts, assign tasks to pantry staff, and track meal deliveries in real-time. Features role-based dashboards for food managers, pantry staff, and delivery personnel.",
+                    technologies: ["React Js","Tailwind","Node.js","Express Js","MongoDB","Socket.io"],
+                    github: "https://github.com/Dinesh-dypcoe/NutriCare",
+                    demo: "https://nutri-care1.vercel.app/login",
+                    image: "/Nutricare.png"
                   }
                   
                 ].map((project, index) => (
