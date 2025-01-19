@@ -30,50 +30,29 @@ const Navbar = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const navContainer = document.getElementById('mobile-nav-container');
-      const clickedItem = document.querySelector(`[data-id="${id}"]`);
+      // Get the navbar height based on screen size
+      const isMobile = window.innerWidth < 600;
+      const navbarHeight = isMobile ? 64 : 100;
       
-      if (navContainer && clickedItem) {
-        // Get the index of clicked item
-        const currentIndex = navItems.findIndex(item => item.id === id);
-        const totalItems = navItems.length;
-        
-        // Get the exact position of the clicked item
-        const itemPosition = clickedItem.offsetLeft;
-        
-        // If we're at the last item, prepare to scroll back to start
-        if (currentIndex === totalItems - 1) {
-          // First scroll to the last item
-          navContainer.scrollTo({
-            left: itemPosition,
-            behavior: 'smooth'
-          });
-          
-          // Then after a short delay, quickly scroll back to start
-          setTimeout(() => {
-            navContainer.scrollTo({
-              left: 0,
-              behavior: 'auto'
-            });
-          }, 300);
-        } else {
-          // Normal scroll to next item
-          navContainer.scrollTo({
-            left: itemPosition,
-            behavior: 'smooth'
-          });
-        }
-      }
+      // Get the element's position
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      
+      // Calculate scroll position with offset
+      const offsetPosition = elementPosition - navbarHeight;
 
       element.scrollIntoView({
         behavior: 'smooth',
-        block: 'start',
       });
-      const navbarHeight = window.innerWidth < 600 ? 64 : 100;
+      
       window.scrollTo({
-        top: window.pageYOffset - navbarHeight,
+        top: offsetPosition,
         behavior: 'smooth'
       });
+      
+      // Close mobile drawer if open
+      if (mobileOpen) {
+        setMobileOpen(false);
+      }
     }
   };
 
@@ -99,9 +78,22 @@ const Navbar = () => {
     sections.forEach(id => {
       const element = document.getElementById(id);
       if (element) {
-        element.style.scrollMarginTop = window.innerWidth < 600 ? '64px' : '100px';
+        element.style.scrollMarginTop = `${window.innerWidth < 600 ? 64 : 100}px`;
       }
     });
+    
+    // Update scroll margins on resize
+    const handleResize = () => {
+      sections.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.style.scrollMarginTop = `${window.innerWidth < 600 ? 64 : 100}px`;
+        }
+      });
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
