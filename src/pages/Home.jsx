@@ -1,6 +1,6 @@
 import { Container, Typography, Box, Button, Card, Chip, IconButton, TextField, Snackbar, Alert } from '@mui/material';
 import { motion } from 'framer-motion';
-import { ArrowForward, GitHub, Launch, ChevronLeft, ChevronRight, LinkedIn, GetApp, CheckCircleOutline } from '@mui/icons-material';
+import { ArrowForward, GitHub, Launch, ChevronLeft, ChevronRight, LinkedIn, GetApp, CheckCircleOutline, EditCalendarRounded } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -1889,18 +1889,7 @@ Let's team up and create something extraordinary together!
 
             {/* Full Stack Projects */}
             <Box sx={{ mb: 8 }}>
-              <Typography
-                variant="h3"
-                sx={{
-                  fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2rem' },
-                  fontWeight: 600,
-                  textAlign: 'center',
-                  mb: 4,
-                  color: '#00D1FF',
-                }}
-              >
-                Full Stack Projects
-              </Typography>
+
               {/* Full Stack Projects Container */}
               <Box
                 sx={{
@@ -1977,180 +1966,7 @@ Let's team up and create something extraordinary together!
                     github: "https://github.com/Dinesh-dypcoe/NutriCare",
                     demo: "https://nutri-care1.vercel.app/login",
                     image: "/Nutricare.png"
-                  }
-                  
-                ].map((project, index) => (
-                  <Card
-                    key={index}
-                    component={motion.div}
-                    variants={fadeInUp}
-                    sx={{
-                      flex: { xs: '0 0 100%', sm: '0 0 45%', md: '0 0 30%' },
-                      maxWidth: { md: '380px' },
-                      scrollSnapAlign: 'start',
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      backdropFilter: 'blur(10px)',
-                      borderRadius: '20px',
-                      overflow: 'hidden',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      '&:hover': {
-                        background: 'rgba(255, 255, 255, 0.08)',
-                        borderColor: '#00D1FF',
-                      }
-                    }}
-                  >
-                    {project.image && (
-                      <Box
-                        sx={{
-                          height: '200px',
-                          overflow: 'hidden',
-                          position: 'relative',
-                          margin: '12px 12px 0',
-                          borderRadius: '4px',
-                          width: 'calc(100% - 24px)',
-                        }}
-                      >
-                        <Box
-                          component="img"
-                          src={project.image}
-                          alt={project.title}
-                          sx={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                            transition: 'transform 0.3s ease',
-                            borderRadius: '4px',
-                            '&:hover': {
-                              transform: 'scale(1.05)',
-                            },
-                          }}
-                        />
-                      </Box>
-                    )}
-                    <Box sx={{ p: 3, pt: project.image ? 2 : 3 }}>
-                      <Typography variant="h6" sx={{ color: 'text.primary', mb: 2 }}>
-                        {project.title}
-                      </Typography>
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2 }}>
-                        {project.technologies.map((tech, idx) => (
-                          <Chip
-                            key={idx}
-                            label={tech}
-                            size="small"
-                            sx={{
-                              background: 'rgba(0, 209, 255, 0.1)',
-                              border: '1px solid rgba(0, 209, 255, 0.2)',
-                              color: 'text.primary',
-                            }}
-                          />
-                        ))}
-                      </Box>
-                      <Typography sx={{ color: 'text.secondary', mb: 2 }}>
-                        {project.description}
-                      </Typography>
-                      <Box sx={{ display: 'flex', gap: 2, mt: 'auto' }}>
-                        <Button
-                          component="a"
-                          href={project.github}
-                          target="_blank"
-                          startIcon={<GitHub />}
-                          variant="outlined"
-                          size="small"
-                          sx={{
-                            borderColor: 'rgba(255, 255, 255, 0.1)',
-                            color: 'text.primary',
-                            '&:hover': {
-                              borderColor: '#00D1FF',
-                              background: 'rgba(0, 209, 255, 0.1)',
-                            },
-                          }}
-                        >
-                          Code
-                        </Button>
-                        <Button
-                          component="a"
-                          href={project.demo}
-                          target="_blank"
-                          startIcon={<Launch />}
-                          variant="contained"
-                          size="small"
-                          sx={{
-                            background: 'linear-gradient(45deg, #00D1FF 30%, #7000FF 90%)',
-                            '&:hover': {
-                              background: 'linear-gradient(45deg, #00A3FF 30%, #5200B3 90%)',
-                            },
-                          }}
-                        >
-                          Live Demo
-                        </Button>
-                      </Box>
-                    </Box>
-                  </Card>
-                ))}
-              </Box>
-            </Box>
-
-            {/* Frontend Projects */}
-            <Box>
-              <Typography
-                variant="h3"
-                sx={{
-                  fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2rem' },
-                  fontWeight: 600,
-                  textAlign: 'center',
-                  mb: 4,
-                  color: '#00D1FF',
-                }}
-              >
-                Frontend Projects
-              </Typography>
-              {/* Frontend Projects Container */}
-              <Box
-                sx={{
-                  display: { xs: 'flex', md: 'none' },
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 1,
-                  mb: 2,
-                  color: 'text.secondary',
-                }}
-              >
-                <ChevronLeft sx={{ animation: 'swipeHint 2s infinite' }} />
-                <Typography variant="caption">
-                  Swipe to see more projects
-                </Typography>
-                <ChevronRight sx={{ animation: 'swipeHint 2s infinite' }} />
-              </Box>
-              <Box
-                id="frontend-container"
-                sx={{
-                  display: 'flex',
-                  flexDirection: { xs: 'row', md: 'row' },
-                  flexWrap: { xs: 'nowrap', md: 'wrap' },
-                  gap: 3,
-                  overflowX: { xs: 'auto', md: 'visible' },
-                  overflowY: 'hidden',
-                  pb: { xs: 2, md: 0 },
-                  mx: { xs: -2, md: 0 },
-                  px: { xs: 2, md: 0 },
-                  justifyContent: { md: 'center' },
-                  '&::-webkit-scrollbar': {
-                    display: 'none'
                   },
-                  scrollbarWidth: 'none',
-                  msOverflowStyle: 'none',
-                  scrollSnapType: 'x mandatory',
-                  position: 'relative',
-                  '@keyframes swipeHint': {
-                    '0%, 100%': { opacity: 0.3 },
-                    '50%': { opacity: 1 },
-                  },
-                }}
-              >
-                {/* Frontend Project Cards */}
-                {[
                   {
                     title: "Snake Game",
                     description: "A classic snake game built with modern web technologies, featuring smooth animations and responsive controls.",
@@ -2158,6 +1974,14 @@ Let's team up and create something extraordinary together!
                     github: "https://github.com/Dinesh-dypcoe/SnakeGame",
                     demo: "https://snake-game-two-smoky.vercel.app/",
                     image: "/snakegame.png"
+                  },
+                  {
+                    title: "ToDo App",
+                    description: "Developed a ToDo app with features like add, delete, mark as important, weather api for outdoor task, set timer and many more features",
+                    technologies: ["React js", "Material ui", "JavaScript","Weather Api","etc"],
+                    github: "https://github.com/Dinesh-dypcoe/DoIt",
+                    demo: "https://do-it-sand.vercel.app/login/",
+                    image: "/Doit.png"
                   },
                   {
                     title: "Rock Paper Scissors",
@@ -2174,7 +1998,8 @@ Let's team up and create something extraordinary together!
                     github: "https://github.com/Dinesh-dypcoe/amazon-clone",
                     demo: "https://dinesh-dypcoe.github.io/amazon-clone/",
                     image: "/amazonclone.png"
-                  }
+                  },
+                  
                 ].map((project, index) => (
                   <Card
                     key={index}

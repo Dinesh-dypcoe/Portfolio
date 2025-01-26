@@ -10,13 +10,16 @@ import {
   List,
   ListItem,
   ListItemText,
+  useTheme,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const theme = useTheme();
 
   const navItems = [
     { title: 'Projects', id: 'projects' },
@@ -234,9 +237,36 @@ const Navbar = () => {
               backdropFilter: 'blur(10px)',
               borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
               boxShadow: '-4px 0 15px rgba(0, 0, 0, 0.5)',
+              transition: 'transform 0.3s ease-in-out',
             },
           }}
+          SlideProps={{
+            timeout: 300,
+          }}
         >
+          {/* Close Button */}
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              p: 2,
+              borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            }}
+          >
+            <IconButton
+              onClick={handleDrawerToggle}
+              sx={{
+                color: '#00D1FF',
+                '&:hover': {
+                  transform: 'rotate(90deg)',
+                  transition: 'transform 0.3s ease',
+                },
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
+
           <List sx={{ pt: 2 }}>
             {navItems.map((item) => (
               <ListItem 
@@ -244,8 +274,10 @@ const Navbar = () => {
                 onClick={() => handleMobileNavClick(item.id)}
                 sx={{
                   py: 2,
+                  transition: 'all 0.2s ease',
                   '&:hover': {
                     background: 'rgba(0, 209, 255, 0.1)',
+                    transform: 'translateX(8px)',
                   },
                 }}
               >
